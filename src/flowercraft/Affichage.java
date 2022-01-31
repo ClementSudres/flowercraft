@@ -27,7 +27,6 @@ public class Affichage extends JPanel {
     public void paint(Graphics g)
     {
         super.paint(g);
-        //g.clearRect(0,0, LARG, HAUT);
         paintGrille(g);
         repaint();
         revalidate();
