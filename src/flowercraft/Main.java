@@ -17,6 +17,7 @@ public class Main {
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.add(new Affichage());
         jframe.pack();
+
         jframe.setVisible(true);
     }
 
