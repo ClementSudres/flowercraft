@@ -1,6 +1,7 @@
 package flowercraft;
 
 import javax.swing.JFrame;
+import java.awt.*;
 
 public class Main {
 
@@ -11,6 +12,7 @@ public class Main {
     public Main()
     {
         JFrame jframe = new JFrame("Flowercraft");
+        /*
         affichage = new Affichage();
 
         jframe.add(affichage);
@@ -19,6 +21,23 @@ public class Main {
         jframe.pack();
 
         jframe.setVisible(true);
+
+
+         */
+        EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
+                try
+                {
+                    FrameBouton frame = new FrameBouton();
+                    frame.setVisible(true);
+                } catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public static void main(String[] args)

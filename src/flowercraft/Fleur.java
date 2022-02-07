@@ -2,7 +2,7 @@ package flowercraft;
 
 public class Fleur {
 
-    public enum TypeFleur {1,2,3}
+    public enum TypeFleur {}
     public TypeFleur type ;
     public int abcisseFleur ;
     public int ordonneeFleur ;
