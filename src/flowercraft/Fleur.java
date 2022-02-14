@@ -2,28 +2,18 @@ package flowercraft;
 
 public class Fleur {
 
-    public enum TypeFleur {}
+    public enum TypeFleur {LENT, MOYEN, RAPIDE}
     public TypeFleur type ;
-    public int abcisseFleur ;
-    public int ordonneeFleur ;
+    public int positionFleur;
     public int vitessePousse ;
 
-    public Fleur (TypeFleur type, int X, int Y) {
+    public Fleur (TypeFleur type, int idCase) {
         this.type = type ;
-        this.abcisseFleur = X ;
-        this.ordonneeFleur = Y ;
-        //this.vitessePousse = type*2 ;
+        this.positionFleur = idCase;
+        //this.vitessePousse;
     }
 
     //int getVitesse (TypeFleur type) { return type*2 ; }
-
-    int getX () {
-        return abcisseFleur ;
-    }
-
-    int getY () {
-        return ordonneeFleur ;
-    }
 
     TypeFleur getType () {
         return type ;

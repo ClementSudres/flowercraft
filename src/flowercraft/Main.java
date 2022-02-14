@@ -14,15 +14,11 @@ public class Main {
         JFrame jframe = new JFrame("Flowercraft");
         /*
         affichage = new Affichage();
-
         jframe.add(affichage);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.add(new Affichage());
         jframe.pack();
-
         jframe.setVisible(true);
-
-
          */
         EventQueue.invokeLater(new Runnable()
         {

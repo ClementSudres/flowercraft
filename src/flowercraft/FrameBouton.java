@@ -35,9 +35,9 @@ public class FrameBouton extends JFrame implements ActionListener
     private void initialize() {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(0, 0, 600, 400);
+        setBounds(0, 0, 1000, 600);
         contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 200));
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 400));
         setContentPane(contentPane);
         contentPane.setLayout(new GridLayout(10, 10, 6, 6));
 
