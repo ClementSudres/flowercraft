@@ -1,54 +1,103 @@
 package flowercraft;
 
 
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Shape;
+
+import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.*;
+import javax.swing.border.EmptyBorder;
 
-public class Affichage extends JPanel {
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Path2D;
+import java.awt.geom.Rectangle2D;
 
-    public static final int LARG = 600;
-    public static final int HAUT = 400;
+public class Affichage extends JFrame implements ActionListener
+{
 
+    private JPanel	contentPane;
+
+    public enum TypeForme
+    {
+        PLEIN
+    }
+
+    /**
+     * Create the frame.
+     */
     public Affichage()
     {
-        setPreferredSize(new Dimension(LARG, HAUT));
+        initialize();
     }
+    private void initialize() {
 
-    public int getLARG()
-    {
-        return this.LARG;
-    }
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(0, 0, 600, 400);
+        contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 200));
+        setContentPane(contentPane);
+        contentPane.setLayout(new GridLayout(10, 10, 6, 6));
 
-    public int getHAUT()
-    {
-        return this.HAUT;
-    }
+        Color colors [] = new Color[] {Color.RED, Color.GREEN, Color.BLUE};
 
-    public void paint(Graphics g)
-    {
-        super.paint(g);
-        paintGrille(g);
-        repaint();
-        revalidate();
-    }
+        int id = 0;
+        for (int y = 0; y < 10; y++)
+        {
+            for (int x = 0; x < 10; x++)
+            {
 
-    public void paintGrille(Graphics g)
-    {
-        super.paintComponent(g);
+                TypeForme tf = TypeForme.PLEIN;
+                float angle = 0.0f;
 
-        int nb_case = 10;
-        Graphics2D g2d = (Graphics2D) g.create();
-        int size = Math.min(getLARG() - 4, getHAUT() - 4) / nb_case;
+                Shape shape = createShape(tf, angle);
 
-        int y = ((getHAUT() - (size * nb_case)) / 2);
-        for (int horz = 0; horz < nb_case; horz++) {
-            int x = ((getLARG() - (size * nb_case)) / 2 ) - 100;
-            for (int vert = 0; vert < nb_case; vert++) {
-                g.drawRect(x, y, size, size);
-                x += size;
+                BoutonSpecial btn = new BoutonSpecial(id++, shape, colors[((id*x+y)%3)]);
+                contentPane.add(btn);
+                btn.addActionListener(this);
             }
-            y += size;
         }
-        g2d.dispose();
+    }
+
+    /* (non-Javadoc)
+     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+        System.err.println("L'utilisateur a clique le bouton "+((BoutonSpecial)e.getSource()).id);
+    }
+
+
+    /**
+     * @param f
+     * @param typeforme
+     * @return
+     */
+    private Shape createShape(TypeForme typeforme, float f)
+    {
+        Shape shape;
+        if (typeforme==TypeForme.PLEIN)
+            shape = new Rectangle2D.Float(0, 0, 1, 1);
+        else
+        {
+            shape = new Path2D.Double();
+            ((Path2D.Double)shape).moveTo(0.0, 0.0);
+            ((Path2D.Double)shape).lineTo(1.0, 0.0);
+            ((Path2D.Double)shape).lineTo(1.0, 0.0);
+            ((Path2D.Double)shape).lineTo(1.0, 1.0);
+            ((Path2D.Double)shape).lineTo(0.0, 1.0);
+            ((Path2D.Double)shape).closePath();
+        }
+
+        AffineTransform at = new AffineTransform();
+        at.translate( 0.5,  0.5);
+        at.rotate(Math.toRadians(f));
+        at.translate(-0.5, -0.5);
+        shape = at.createTransformedShape(shape);
+        return shape;
     }
 }
