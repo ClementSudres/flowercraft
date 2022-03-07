@@ -2,8 +2,8 @@ package flowercraft;
 
 public class Jardinier {
 
-    public Jardinier()
-    {
+    public Jardinier (int X , int Y) {
 
     }
+
 }
