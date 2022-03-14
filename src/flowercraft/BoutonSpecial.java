@@ -187,6 +187,4 @@ public class BoutonSpecial extends JComponent implements ComponentListener, Mous
             ((ActionListener)listeners[i]).actionPerformed(new ActionEvent(this, 0, "Dudul"));
         }
     }
-
-
 }
