@@ -1,5 +1,9 @@
 package flowercraft;
 
+import java.util.Timer;
+import java.util.TimerTask;
+import java.awt.Color;
+
 public class Fleur {
 
     public enum TypeFleur {LENT , MOYEN , RAPIDE}
@@ -8,9 +12,10 @@ public class Fleur {
     public int vitessePousse ;
     public boolean maturiteFleur ;
     public int prix ;
+    public int idCase;
 
-    public Fleur (TypeFleur type, int idCase) {
-        this.type = type ;
+    public Fleur(){ //(TypeFleur type, int idCase) {
+        //this.type = type ;
         this.positionFleur = idCase ;
         this.maturiteFleur = false ;
         if (this.type == TypeFleur.LENT) {
@@ -51,4 +56,13 @@ public class Fleur {
         return fleur.vitessePousse ;
     }
 
+    public static void pousseFleur(Fleur fleur){
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+
+            }
+        },  4500);
+    }
 }

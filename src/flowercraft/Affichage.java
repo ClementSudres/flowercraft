@@ -68,6 +68,7 @@ public class Affichage implements ActionListener{
     public void actionPerformed(ActionEvent e)
     {
         System.err.println("L'utilisateur a clique le bouton "+((BoutonSpecial)e.getSource()).id);
+        BoutonSpecial.getId = ((BoutonSpecial) e.getSource()).id;
     }
 
     private Shape createShape(float f)

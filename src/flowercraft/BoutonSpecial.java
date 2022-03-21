@@ -13,11 +13,15 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.AffineTransform;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.swing.JComponent;
 
 
 public class BoutonSpecial extends JComponent implements ComponentListener, MouseListener, MouseMotionListener
 {
+    public static int getId;
     Shape shape;
     Shape shape_scaled;
     Color color;
@@ -33,6 +37,10 @@ public class BoutonSpecial extends JComponent implements ComponentListener, Mous
         addComponentListener(this);
         addMouseListener(this);
         addMouseMotionListener(this);
+    }
+
+    public int getId() {
+        return id;
     }
 
     /**
@@ -104,8 +112,20 @@ public class BoutonSpecial extends JComponent implements ComponentListener, Mous
     @Override
     public void mouseClicked(MouseEvent e)
     {
-        if (mouseInside==true)
+        if (mouseInside==true) {
             fire();
+        }
+
+            ((BoutonSpecial) e.getSource()).color = Color.RED;
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    ((BoutonSpecial) e.getSource()).color = Color.GREEN;
+                    repaint();
+                }
+            },  2000);
+
     }
 
     /* (non-Javadoc)

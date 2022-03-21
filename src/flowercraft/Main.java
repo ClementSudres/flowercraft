@@ -3,11 +3,16 @@ package flowercraft;
 import javax.swing.*;
 import java.awt.*;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Main {
 
     public static Main flowercraft;
 
     Affichage affichage = new Affichage();
+
+    static Fleur fleur = new Fleur();
 
     public Main()
     {
@@ -31,6 +36,7 @@ public class Main {
 
     public static void main(String[] args)
     {
+        //fleur.pousseFleur(fleur);
         flowercraft = new Main();
     }
 }
