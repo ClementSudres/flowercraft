@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0">
+        <title>The Game Play</title>
+        <style>
+            :root {
+                --blue: blue;
+            }
+            #container {
+                background-color: green;
+                width: 1000px;
+                height: 500px;
+                margin: auto;
+                display: grid;
+                grid-template-rows: 250px 250px; 
+                grid-template-columns: 200px 600px 200px;
+                grid-template-areas: 
+                    "player2 court-fold player1"
+                    "player2 chat player1";
+            }
+            #player1 {
+                background-color: var(--blue);
+                grid-area: player1;
+            }
+            #player2 {
+                background-color: red;
+                grid-area: player2;
+            }
+            #court-fold {
+                background-color: yellow;
+                grid-area: court-fold;
+            }
+            #chat {
+                background-color: black;
+                grid-area: chat;
+            }
+            img {
+                width: 60px;
+                height: auto;
+                transform: rotate(-90deg);
+                display: block;
+                margin-bottom: -40px;
+            }
+            img:first {
+                margin-bottom: 0;
+            }
+            img:nth-child(2) {
+                z-index: 999;
+            }
+            .display {
+                width: 45px;
+                height: 100px;
+                padding: 100px 0;
+                margin: auto;
+            }
+            .chat-room {
+                height: 225px;
+                width: 500px;
+                margin: auto;
+                background-color: wheat;
+            }
+            #center {
+                width: 150px;
+                height: 150px;
+                margin: 50px auto auto;
+            }
+            #position {
+                position: relative;
+                height: 100%;
+                width: 100%;
+                background-color: lightgreen;
+            }
+            #position img {
+                position: absolute;
+                display: inline;
+                margin: 0;
+                margin-left: 15px;
+            }
+            #position img:nth-child(1) {
+                bottom: 15px;
+                left: 35px;
+            }
+            #position img:nth-child(2) {
+               bottom: 50px;
+                left: 20px; 
+            }
+
+        </style>
+    </head>
+    
+    <body>
+        <div id="container">
+            <div id="player1">
+                <div id="one" class="display">
+                    <img src="images/carte_Autres_1.png" alt="carte_Autres_1">
+                    <img src="images/carte_Autres_2.png" alt="carte_Autres_2">
+                    <img src="images/carte_Carraux_2.png" alt="carte_Autres_3">
+                    <img src="images/carte_Carraux_1.png" alt="carte_Autres_4">
+                </div>
+            </div>
+            <div id="player2">
+                <div id="two" class="display">
+                    <img src="images/carte_Autres_3.png" alt="carte_Autres_1">
+                    <img src="images/carte_Autres_3.png" alt="carte_Autres_2">
+                    <img src="images/carte_Autres_3.png" alt="carte_Autres_3">
+                    <img src="images/carte_Autres_3.png" alt="carte_Autres_4">
+                </div>
+            </div>
+            <div id="court-fold">
+                <div id="center">
+                    <div id="position">
+                        <img src="images/carte_Autres_1.png" alt="images/carte_Autres_1">
+                        <img src="images/carte_Autres_1.png" alt="images/carte_Autres_2">
+                    </div>
+                </div>
+            </div>
+            <div id="chat">
+                <div class="chat-room">
+                    <div id="messages"></div>
+                    <p>
+                        <textarea placeholder="Chat with your opponent" rows="2" cols="55"></textarea>
+                        <input type="submit" name="Send">
+                    </p>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
+        <script>
+        player = '';
+            $.ajax({
+                url: "player1.html",
+                cache: false,
+                success: function (html) {
+                    player = html.split('/n')[-1].split(': ')[1];
+                }
+            });
+            alert(player);
+        </script>
+    </body>
+
+</html>
